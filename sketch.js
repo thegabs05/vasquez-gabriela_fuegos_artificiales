@@ -12,13 +12,12 @@ function draw() {
   for (let i = 0; i < sis.length; i++) {
     if (sis[i].estaMuerta) {
       sis.splice(i, 1);
+    } else {
+      sis[i].update();
+      sis[i].display();
+      print("funciona");
     }
   }
 
-  for (let i = 0; i < sis.length; i++) {
-    sis[i].update();
-    sis[i].display();
-    print("funciona");
-  }
   //for (let i = 0; i<ps.length; i++);
 }

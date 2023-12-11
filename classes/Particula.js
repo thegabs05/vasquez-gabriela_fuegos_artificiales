@@ -5,15 +5,16 @@ class Particula {
     this.rad = this.tam / 2;
     this.pos = createVector(windowWidth / 2, windowHeight + this.rad);
 
-    this.vel = createVector(0, random(5, 11));
+    this.vel = createVector(0, random(5, 10));
     this.vel.rotate(random(150, 210));
     this.acel = createVector(random(-0.01, 0.01), 0.1);
 
-    this.tiempoDeVidaInicial = Math.ceil(random(50, 150));
+    this.tiempoDeVidaInicial = Math.ceil(random(250, 350));
     this.tiempoDeVida = this.tiempoDeVidaInicial;
+    this.estaMuriendo = false;
     this.estaMuerta = false;
-
-    this.explotar = false;
+    this.estaExplotando = false;
+    this.tiempoDeExplosion = 100;
   }
 
   update() {
@@ -30,14 +31,23 @@ class Particula {
       0
     );
 
-    if (this.tiempoDeVida <= 0) {
-      this.estaMuerta = true;
-      circle(this.pos.x, this.pos.y, this.tamInicial);
+    this.tiempoDeVida -= 1;
+    if (this.tiempoDeVida < 0) {
+      this.estaMuriendo = true;
+      this.estaExplotando = true;
     }
 
-    if (this.explotar >= 35) {
-      this.explotar = true;
-      circle(this.pos.x, this.pos.y, this.tamInicial);
+    if (this.estaMuriendo) {
+      this.diamExplosion = map(this.estaExplotando, 10, 0, 1, 50);
+      circle(this.pos.x, this.pos.y, this.diamExplosion);
+      //print("funcionaa");
+    }
+
+    if (this.estaExplotando) {
+      this.tiempoDeExplosion -= 1;
+      if (this.tiempoDeExplosion <= 0) {
+        this.estaMuerta = true;
+      }
     }
   }
 
