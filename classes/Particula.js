@@ -5,16 +5,16 @@ class Particula {
     this.rad = this.tam / 2;
     this.pos = createVector(windowWidth / 2, windowHeight + this.rad);
 
-    this.vel = createVector(0, random(5, 10));
+    this.vel = createVector(0, random(7, 10));
     this.vel.rotate(random(150, 210));
     this.acel = createVector(random(-0.01, 0.01), 0.1);
 
-    this.tiempoDeVidaInicial = Math.ceil(random(250, 350));
+    this.tiempoDeVidaInicial = Math.ceil(random(220, 250));
     this.tiempoDeVida = this.tiempoDeVidaInicial;
     this.estaMuriendo = false;
     this.estaMuerta = false;
     this.estaExplotando = false;
-    this.tiempoDeExplosion = 100;
+    this.tiempoDeExplosion = 70;
   }
 
   update() {
@@ -39,7 +39,12 @@ class Particula {
 
     if (this.estaMuriendo) {
       this.diamExplosion = map(this.estaExplotando, 10, 0, 1, 50);
-      circle(this.pos.x, this.pos.y, this.diamExplosion);
+      fill(90, 145, 255, 40);
+      circle(this.pos.x, this.pos.y, this.diamExplosion + 25);
+      fill(255, 60);
+      circle(this.pos.x, this.pos.y, this.diamExplosion + 50);
+      fill(255, 80);
+      circle(this.pos.x, this.pos.y, this.diamExplosion + 75);
       //print("funcionaa");
     }
 
@@ -52,7 +57,7 @@ class Particula {
   }
 
   display() {
-    fill(255);
+    fill(90, 145, 255);
     noStroke();
     circle(this.pos.x, this.pos.y, this.tam);
   }

@@ -10,7 +10,7 @@ function setup() {
 function draw() {
   background(0, 25);
   for (let i = 0; i < sis.length; i++) {
-    if (sis[i].estaMuerta) {
+    if (sis[i].estaExplotando) {
       sis.splice(i, 1);
     } else {
       sis[i].update();
