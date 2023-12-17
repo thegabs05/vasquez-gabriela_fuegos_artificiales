@@ -15,6 +15,8 @@ class Particula {
     this.estaMuerta = false;
     this.estaExplotando = false;
     this.tiempoDeExplosion = 70;
+
+    this.color = color(random(100, 255), random(20, 100), random(100, 220));
   }
 
   update() {
@@ -57,7 +59,7 @@ class Particula {
   }
 
   display() {
-    fill(90, 145, 255);
+    fill(this.color);
     noStroke();
     circle(this.pos.x, this.pos.y, this.tam);
   }

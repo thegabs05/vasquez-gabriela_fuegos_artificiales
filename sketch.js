@@ -9,13 +9,16 @@ function setup() {
 
 function draw() {
   background(0, 25);
+
   for (let i = 0; i < sis.length; i++) {
     if (sis[i].estaExplotando) {
       sis.splice(i, 1);
+      let p = new Particula();
+      sis.push(p);
     } else {
       sis[i].update();
       sis[i].display();
-      print("funciona");
+      //print("funciona");
     }
   }
 
